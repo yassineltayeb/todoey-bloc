@@ -64,7 +64,7 @@
             "outputFile": "com.example.todoey.app-merged_res-11:/values-night-v8_values-night-v8.arsc.flat",
             "map": [
                 {
-                    "source": "D:\\Work\\Repositories\\Flutter\\todoey\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "D:\\Work\\Repositories\\Flutter\\todoey-bloc\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
@@ -651,7 +651,7 @@
                     }
                 },
                 {
-                    "source": "D:\\Work\\Repositories\\Flutter\\todoey\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "D:\\Work\\Repositories\\Flutter\\todoey-bloc\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

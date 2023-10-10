@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "D:\\Work\\Repositories\\Flutter\\todoey\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "D:\\Work\\Repositories\\Flutter\\todoey-bloc\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

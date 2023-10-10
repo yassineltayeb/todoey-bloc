@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey/models/task_data.dart';
-import 'package:todoey/screens/task/task_screen_imports.dart';
+import 'injection.dart' as di;
 
-void main() {
+import '2_application/pages/task/task_screen_imports.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+
   runApp(const MyApp());
 }
 
@@ -15,7 +20,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => TaskData(),
       child: const MaterialApp(
-        home: TaskScreen(),
+        home: TaskScreenWrapperProvider(),
       ),
     );
   }
