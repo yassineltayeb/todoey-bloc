@@ -12,7 +12,7 @@ class TaskRepoImpl implements TaskRepo {
   TaskRepoImpl({required this.taskLocalDataSource});
 
   @override
-  Future<Either<Failure, TaskEntity>> addTaskToDataSource(
+  Future<Either<Failure, List<TaskEntity>>> addTaskToDataSource(
       TaskEntity task) async {
     try {
       final taskModel = TaskModel.fromEntity(task);
@@ -27,7 +27,7 @@ class TaskRepoImpl implements TaskRepo {
   }
 
   @override
-  Future<Either<Failure, TaskEntity>> updateTaskToDataSource(
+  Future<Either<Failure, List<TaskEntity>>> updateTaskToDataSource(
       TaskEntity task) async {
     try {
       final taskModel = TaskModel.fromEntity(task);
@@ -42,7 +42,7 @@ class TaskRepoImpl implements TaskRepo {
   }
 
   @override
-  Future<Either<Failure, TaskEntity>> deleteTaskFromDataSource(
+  Future<Either<Failure, List<TaskEntity>>> deleteTaskFromDataSource(
       TaskEntity task) async {
     try {
       final taskModel = TaskModel.fromEntity(task);

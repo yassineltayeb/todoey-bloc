@@ -32,7 +32,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       var failureOrTasks = await taskUseCases.updateTask(event.task);
       failureOrTasks.fold(
           (failure) => emit(TaskError(message: _mapFailureToMessage(failure))),
-          (tasks) => emit(TaskInitial()));
+          (tasks) => emit(TaskLoaded(tasks: tasks)));
     });
   }
 

@@ -13,16 +13,16 @@ class TaskUseCases {
     return await taskRepo.getTasksFromDataSource();
   }
 
-  Future<Either<Failure, TaskEntity>> addTask(TaskEntity task) async {
+  Future<Either<Failure, List<TaskEntity>>> addTask(TaskEntity task) async {
     return await taskRepo.addTaskToDataSource(task);
   }
 
-  Future<Either<Failure, TaskEntity>> updateTask(TaskEntity task) async {
+  Future<Either<Failure, List<TaskEntity>>> updateTask(TaskEntity task) async {
     task.isDone = !task.isDone;
     return await taskRepo.updateTaskToDataSource(task);
   }
 
-  Future<Either<Failure, TaskEntity>> deleteTask(TaskEntity task) async {
+  Future<Either<Failure, List<TaskEntity>>> deleteTask(TaskEntity task) async {
     return await taskRepo.deleteTaskFromDataSource(task);
   }
 }
