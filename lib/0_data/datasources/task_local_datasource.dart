@@ -14,12 +14,10 @@ class TaskLocalDataSourceImpl implements TaskLocalDataSource {
   Future<List<TaskModel>> getTasksFromLocalStorage() async {
     List<TaskModel> tasks = [];
     var prefs = await SharedPreferences.getInstance();
-    var taskListJson = prefs.getStringList('task-list') ?? [];
+    var taskListJson = prefs.getStringList('taskList') ?? [];
     tasks = taskListJson
         .map<TaskModel>((json) => TaskModel.fromJson((jsonDecode(json))))
         .toList();
-
-    tasks.addAll(tasks);
 
     return tasks;
   }
@@ -46,6 +44,6 @@ class TaskLocalDataSourceImpl implements TaskLocalDataSource {
     final prefs = await SharedPreferences.getInstance();
     final taskJson = tasks.map((obj) => jsonEncode(obj)).toList();
     await prefs.setStringList(
-        'task-list', taskJson.map((e) => e.toString()).toList());
+        'taskList', taskJson.map((e) => e.toString()).toList());
   }
 }

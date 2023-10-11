@@ -10,7 +10,6 @@ class TaskUseCases {
   TaskUseCases({required this.taskRepo});
 
   Future<Either<Failure, List<TaskEntity>>> getTasks() async {
-    return right([TaskEntity(name: "test", isDone: true)]);
     return await taskRepo.getTasksFromDataSource();
   }
 

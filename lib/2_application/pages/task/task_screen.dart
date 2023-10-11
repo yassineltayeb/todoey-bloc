@@ -94,7 +94,8 @@ class _TaskScreenState extends State<TaskScreen> {
                     BlocBuilder<TaskBloc, TaskState>(
                       builder: (context, state) {
                         if (state is TaskLoading) {
-                          return Text("loading...");
+                          return const CircularProgressIndicator(
+                              color: Colors.white);
                         }
                         if (state is TaskLoaded) {
                           return Text(
