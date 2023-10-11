@@ -14,10 +14,19 @@ sealed class TaskEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-sealed class AddTaskEvent extends TaskEvent {
+ class AddTaskEvent extends TaskEvent {
   final TaskEntity task;
 
   AddTaskEvent({required this.task});
+
+  @override
+  List<Object?> get props => [task];
+}
+
+class UpdateTaskEvent extends TaskEvent {
+  final TaskEntity task;
+
+  UpdateTaskEvent({required this.task});
 
   @override
   List<Object?> get props => [task];

@@ -2,9 +2,9 @@ import 'package:equatable/equatable.dart';
 
 class TaskEntity extends Equatable {
   final String name;
-  final bool isDone;
+  bool isDone;
 
-  const TaskEntity({
+  TaskEntity({
     required this.name,
     required this.isDone,
   });

@@ -17,6 +17,11 @@ class TaskUseCases {
     return await taskRepo.addTaskToDataSource(task);
   }
 
+  Future<Either<Failure, TaskEntity>> updateTask(TaskEntity task) async {
+    task.isDone = !task.isDone;
+    return await taskRepo.updateTaskToDataSource(task);
+  }
+
   Future<Either<Failure, TaskEntity>> deleteTask(TaskEntity task) async {
     return await taskRepo.deleteTaskFromDataSource(task);
   }

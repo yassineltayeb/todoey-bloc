@@ -1,7 +1,7 @@
 part of 'task_widgets_imports.dart';
 
 class TaskTile extends StatelessWidget {
-  final Task task;
+  final TaskEntity task;
   final ValueChanged<bool?> onChange;
 
   const TaskTile({
@@ -23,11 +23,11 @@ class TaskTile extends StatelessWidget {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        Provider.of<TaskData>(
-                          context,
-                          listen: false,
-                        ).deleteTask(task);
-                        Navigator.pop(context);
+                        // Provider.of<TaskData>(
+                        //   context,
+                        //   listen: false,
+                        // ).deleteTask(task);
+                        // Navigator.pop(context);
                       },
                       child: const Text('Yes'),
                     ),

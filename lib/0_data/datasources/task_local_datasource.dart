@@ -6,6 +6,7 @@ import 'package:todoey/0_data/models/task_model.dart';
 abstract class TaskLocalDataSource {
   Future<List<TaskModel>> getTasksFromLocalStorage();
   Future<TaskModel> addTaskToLocalStorage(TaskModel task);
+  Future<TaskModel> updateTaskToLocalStorage(TaskModel task);
   Future<TaskModel> deleteTaskFromLocalStorage(TaskModel task);
 }
 
@@ -22,6 +23,7 @@ class TaskLocalDataSourceImpl implements TaskLocalDataSource {
     return tasks;
   }
 
+  @override
   Future<TaskModel> addTaskToLocalStorage(TaskModel task) async {
     final tasks = await getTasksFromLocalStorage();
     tasks.add(task);
@@ -31,6 +33,20 @@ class TaskLocalDataSourceImpl implements TaskLocalDataSource {
     return task;
   }
 
+  @override
+  Future<TaskModel> updateTaskToLocalStorage(TaskModel task) async {
+    final tasks = await getTasksFromLocalStorage();
+    int index = tasks.indexWhere((entity) => entity.name == task.name);
+    if (index != -1) {
+      tasks[index] = task;
+    }
+
+    await _saveTasksToLocalStorage(tasks);
+
+    return task;
+  }
+
+  @override
   Future<TaskModel> deleteTaskFromLocalStorage(TaskModel task) async {
     final tasks = await getTasksFromLocalStorage();
     tasks.remove(task);

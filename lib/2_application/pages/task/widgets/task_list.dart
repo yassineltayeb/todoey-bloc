@@ -10,17 +10,29 @@ class TaskList extends StatefulWidget {
 class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<TaskData>(builder: (context, taskData, child) {
-      return ListView.builder(
-        itemCount: taskData.tasks.length,
-        itemBuilder: (context, index) {
-          final task = taskData.tasks[index];
-          return TaskTile(
-            task: task,
-            onChange: (value) => taskData.updateTask(task),
+    return BlocBuilder<TaskBloc, TaskState>(
+      builder: (context, state) {
+        if (state is TaskLoading) {
+          return const Center(
+              child: CircularProgressIndicator(color: Colors.lightBlueAccent));
+        } else if (state is TaskLoaded) {
+          return ListView.builder(
+            itemCount: state.tasks.length,
+            itemBuilder: (context, index) {
+              final task = state.tasks[index];
+              return TaskTile(
+                task: task,
+                onChange: (value) {
+                  var task = state.tasks[index];
+                  context.read<TaskBloc>().add(UpdateTaskEvent(task: task));
+                },
+                // onChange: (value) => state.updateTask(task),
+              );
+            },
           );
-        },
-      );
-    });
+        }
+        return const Text('No Tasks to load');
+      },
+    );
   }
 }

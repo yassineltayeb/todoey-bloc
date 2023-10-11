@@ -16,9 +16,24 @@ class TaskRepoImpl implements TaskRepo {
       TaskEntity task) async {
     try {
       final taskModel = TaskModel.fromEntity(task);
-      final deletedTask =
+      final addedTask =
           await taskLocalDataSource.addTaskToLocalStorage(taskModel);
-      return right(deletedTask);
+      return right(addedTask);
+    } on ServerException catch (e) {
+      return left(ServerFailure());
+    } on CacheException catch (e) {
+      return left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, TaskEntity>> updateTaskToDataSource(
+      TaskEntity task) async {
+    try {
+      final taskModel = TaskModel.fromEntity(task);
+      final updatedTask =
+          await taskLocalDataSource.updateTaskToLocalStorage(taskModel);
+      return right(updatedTask);
     } on ServerException catch (e) {
       return left(ServerFailure());
     } on CacheException catch (e) {

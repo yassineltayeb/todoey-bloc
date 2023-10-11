@@ -20,11 +20,19 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   TaskBloc({required this.taskUseCases}) : super(TaskInitial()) {
     on<GetTasksEvent>((event, emit) async {
       emit(TaskLoading());
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 5));
       var failureOrTasks = await taskUseCases.getTasks();
       failureOrTasks.fold(
           (failure) => emit(TaskError(message: _mapFailureToMessage(failure))),
           (tasks) => emit(TaskLoaded(tasks: tasks)));
+    });
+
+    on<UpdateTaskEvent>((event, emit) async {
+      emit(TaskLoading());
+      var failureOrTasks = await taskUseCases.updateTask(event.task);
+      failureOrTasks.fold(
+          (failure) => emit(TaskError(message: _mapFailureToMessage(failure))),
+          (tasks) => emit(TaskInitial()));
     });
   }
 
