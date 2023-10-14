@@ -20,7 +20,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   TaskBloc({required this.taskUseCases}) : super(TaskInitial()) {
     on<GetTasksEvent>((event, emit) async {
       emit(TaskLoading());
-      await Future.delayed(const Duration(seconds: 5));
       var failureOrTasks = await taskUseCases.getTasks();
       failureOrTasks.fold(
           (failure) => emit(TaskError(message: _mapFailureToMessage(failure))),
@@ -29,7 +28,25 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
     on<UpdateTaskEvent>((event, emit) async {
       emit(TaskLoading());
-      var failureOrTasks = await taskUseCases.updateTask(event.task);
+      var failureOrTask = await taskUseCases.updateTask(event.task);
+      failureOrTask.fold(
+          (failure) => emit(TaskError(message: _mapFailureToMessage(failure))),
+          (task) => null);
+
+      var failureOrTasks = await taskUseCases.getTasks();
+      failureOrTasks.fold(
+          (failure) => emit(TaskError(message: _mapFailureToMessage(failure))),
+          (tasks) => emit(TaskLoaded(tasks: tasks)));
+    });
+
+    on<DeleteTaskEvent>((event, emit) async {
+      emit(TaskLoading());
+      var failureOrTask = await taskUseCases.deleteTask(event.task);
+      failureOrTask.fold(
+          (failure) => emit(TaskError(message: _mapFailureToMessage(failure))),
+          (task) => null);
+
+      var failureOrTasks = await taskUseCases.getTasks();
       failureOrTasks.fold(
           (failure) => emit(TaskError(message: _mapFailureToMessage(failure))),
           (tasks) => emit(TaskLoaded(tasks: tasks)));

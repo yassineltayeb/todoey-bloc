@@ -23,11 +23,8 @@ class TaskTile extends StatelessWidget {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        // Provider.of<TaskData>(
-                        //   context,
-                        //   listen: false,
-                        // ).deleteTask(task);
-                        // Navigator.pop(context);
+                        context.read<TaskBloc>().add(DeleteTaskEvent(task: task));
+                        Navigator.pop(context);
                       },
                       child: const Text('Yes'),
                     ),

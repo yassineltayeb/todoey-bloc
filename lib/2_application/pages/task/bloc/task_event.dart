@@ -5,7 +5,7 @@ sealed class TaskEvent extends Equatable {
   List<Object?> get props => [];
 }
 
- class GetTasksEvent extends TaskEvent {
+class GetTasksEvent extends TaskEvent {
   // final List<TaskEntity> tasks;
 
   GetTasksEvent();
@@ -14,7 +14,7 @@ sealed class TaskEvent extends Equatable {
   List<Object?> get props => [];
 }
 
- class AddTaskEvent extends TaskEvent {
+class AddTaskEvent extends TaskEvent {
   final TaskEntity task;
 
   AddTaskEvent({required this.task});
@@ -32,7 +32,7 @@ class UpdateTaskEvent extends TaskEvent {
   List<Object?> get props => [task];
 }
 
-sealed class DeleteTaskEvent extends TaskEvent {
+class DeleteTaskEvent extends TaskEvent {
   final TaskEntity task;
 
   DeleteTaskEvent({required this.task});

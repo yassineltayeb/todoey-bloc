@@ -12,13 +12,13 @@ class TaskRepoImpl implements TaskRepo {
   TaskRepoImpl({required this.taskLocalDataSource});
 
   @override
-  Future<Either<Failure, List<TaskEntity>>> addTaskToDataSource(
+  Future<Either<Failure, TaskEntity>> addTaskToDataSource(
       TaskEntity task) async {
     try {
       final taskModel = TaskModel.fromEntity(task);
       final addedTask =
           await taskLocalDataSource.addTaskToLocalStorage(taskModel);
-      return right(addedTask);
+      return right(taskModel);
     } on ServerException catch (e) {
       return left(ServerFailure());
     } on CacheException catch (e) {
@@ -27,13 +27,13 @@ class TaskRepoImpl implements TaskRepo {
   }
 
   @override
-  Future<Either<Failure, List<TaskEntity>>> updateTaskToDataSource(
+  Future<Either<Failure, TaskEntity>> updateTaskToDataSource(
       TaskEntity task) async {
     try {
       final taskModel = TaskModel.fromEntity(task);
       final updatedTask =
           await taskLocalDataSource.updateTaskToLocalStorage(taskModel);
-      return right(updatedTask);
+      return right(taskModel);
     } on ServerException catch (e) {
       return left(ServerFailure());
     } on CacheException catch (e) {
@@ -42,13 +42,13 @@ class TaskRepoImpl implements TaskRepo {
   }
 
   @override
-  Future<Either<Failure, List<TaskEntity>>> deleteTaskFromDataSource(
+  Future<Either<Failure, TaskEntity>> deleteTaskFromDataSource(
       TaskEntity task) async {
     try {
       final taskModel = TaskModel.fromEntity(task);
       final addedTask =
-          await taskLocalDataSource.addTaskToLocalStorage(taskModel);
-      return right(addedTask);
+          await taskLocalDataSource.deleteTaskFromLocalStorage(taskModel);
+      return right(taskModel);
     } on ServerException catch (e) {
       return left(ServerFailure());
     } on CacheException catch (e) {
