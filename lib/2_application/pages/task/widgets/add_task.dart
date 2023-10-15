@@ -57,10 +57,8 @@ class AddTask extends StatelessWidget {
                     fontSize: 25,
                   )),
               onPressed: () {
-                Provider.of<TaskData>(
-                  context,
-                  listen: false,
-                ).addTask(taskName);
+                var task = TaskEntity(name: taskName, isDone: false);
+                context.read<TaskBloc>().add(AddTaskEvent(task: task));
                 Navigator.pop(context);
               },
               child: const Text('Add'),
