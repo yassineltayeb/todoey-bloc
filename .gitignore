@@ -42,3 +42,16 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+.flutter-plugins-dependencies
+.dart_tool/flutter_build/abd20fa0040194dda623e583fc146e9c/.filecache
+.dart_tool/flutter_build/abd20fa0040194dda623e583fc146e9c/app.dill
+.dart_tool/flutter_build/abd20fa0040194dda623e583fc146e9c/kernel_snapshot.d
+.dart_tool/flutter_build/abd20fa0040194dda623e583fc146e9c/kernel_snapshot.stamp
+build/04aea6e5247a38261e4730de6ee36cbd.cache.dill.track.dill
+build/app/intermediates/assets/debug/flutter_assets/kernel_blob.bin
+build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/kernel_blob.bin.jar
+build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin
+build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt
+build/app/outputs/apk/debug/app-debug.apk
+build/app/outputs/flutter-apk/app-debug.apk
+build/app/outputs/flutter-apk/app-debug.apk.sha1
