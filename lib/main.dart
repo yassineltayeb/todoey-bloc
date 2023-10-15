@@ -15,8 +15,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: TaskScreenWrapperProvider(),
-    );
+    return const TaskScreenWrapperProvider();
   }
 }

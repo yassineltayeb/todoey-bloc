@@ -26,6 +26,19 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           (tasks) => emit(TaskLoaded(tasks: tasks)));
     });
 
+    on<AddTaskEvent>((event, emit) async {
+      emit(TaskLoading());
+      var failureOrTask = await taskUseCases.addTask(event.task);
+      failureOrTask.fold(
+          (failure) => emit(TaskError(message: _mapFailureToMessage(failure))),
+          (task) => null);
+
+      var failureOrTasks = await taskUseCases.getTasks();
+      failureOrTasks.fold(
+          (failure) => emit(TaskError(message: _mapFailureToMessage(failure))),
+          (tasks) => emit(TaskLoaded(tasks: tasks)));
+    });
+
     on<UpdateTaskEvent>((event, emit) async {
       emit(TaskLoading());
       var failureOrTask = await taskUseCases.updateTask(event.task);

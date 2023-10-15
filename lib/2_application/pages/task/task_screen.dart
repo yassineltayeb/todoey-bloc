@@ -7,7 +7,7 @@ class TaskScreenWrapperProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<TaskBloc>(),
-      child: const TaskScreen(),
+      child: const MaterialApp(home: TaskScreen()),
     );
   }
 }
